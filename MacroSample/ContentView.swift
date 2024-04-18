@@ -27,11 +27,15 @@ struct ContentView: View {
 }
 
 
-//import MacroSampleCommon
-//@DependencyKeyConformed
-//struct MyObject {
-//    
-//}
+import MacroSampleCommon
+
+protocol IMyObject {
+}
+
+@DependencyKeyConformed
+struct MyObject: IMyObject {
+    
+}
 
 //import MacroSampleCommon
 //struct MyObject: DependencyKey {

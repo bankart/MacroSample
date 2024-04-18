@@ -29,6 +29,13 @@
 			remoteGlobalIDString = CE4A35CE2BC3DC4000B7D74B;
 			remoteInfo = MacroSampleCommon;
 		};
+		CE921E3C2BCF88FC007AE07A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE4A35C62BC3DC4000B7D74B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE4A35EA2BC3DC8900B7D74B;
+			remoteInfo = MacroSampleCommonMacros;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -151,6 +158,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE4A35E12BC3DC4000B7D74B /* Build configuration list for PBXNativeTarget "MacroSampleCommon" */;
 			buildPhases = (
+				CE921E3E2BCF8909007AE07A /* ShellScript */,
 				CE4A35CA2BC3DC4000B7D74B /* Headers */,
 				CE4A35CB2BC3DC4000B7D74B /* Sources */,
 				CE4A35CC2BC3DC4000B7D74B /* Frameworks */,
@@ -159,6 +167,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CE921E3D2BCF88FC007AE07A /* PBXTargetDependency */,
 			);
 			name = MacroSampleCommon;
 			productName = MacroSampleCommon;
@@ -269,6 +278,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CE921E3E2BCF8909007AE07A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				$BUILD_DIR/$CONFIGURATION/MacroSampleCommonMacros,
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$BUILD_DIR/Debug-iphonesimulator/MacroSampleCommonMacros",
+				"$BUILD_DIR/Debug-iphoneos/MacroSampleCommonMacros",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#  This build phase serves two purposes:\n#  - Force Xcode build system to compile the macOS executable transitively when compiling for non-macOS destinations\n#  - Place the artifacts in the \"Debug\" directory where the built artifacts for the active destination live. We default to \"Debug\" because otherwise the Xcode editor fails to resolve the macro references.\nif [[ -f \"$BUILD_DIR/$CONFIGURATION/MacroSampleCommonMacros\" && ! -f \"$BUILD_DIR/Debug$EFFECTIVE_PLATFORM_NAME/MacroSampleCommonMacros\" ]]; then\n    mkdir -p \"$BUILD_DIR/Debug$EFFECTIVE_PLATFORM_NAME/\"\n    cp \"$BUILD_DIR/$CONFIGURATION/MacroSampleCommonMacros\" \"$BUILD_DIR/Debug$EFFECTIVE_PLATFORM_NAME/MacroSampleCommonMacros\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CE4A35CB2BC3DC4000B7D74B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -303,6 +335,11 @@
 			isa = PBXTargetDependency;
 			target = CE4A35CE2BC3DC4000B7D74B /* MacroSampleCommon */;
 			targetProxy = CE4A35D92BC3DC4000B7D74B /* PBXContainerItemProxy */;
+		};
+		CE921E3D2BCF88FC007AE07A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE4A35EA2BC3DC8900B7D74B /* MacroSampleCommonMacros */;
+			targetProxy = CE921E3C2BCF88FC007AE07A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

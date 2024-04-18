@@ -11,7 +11,7 @@ import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
 public struct DependencyKeyConformedMacro {
-    
+    private static let conformed = "DependencyKey"
 }
 
 extension DependencyKeyConformedMacro: ExtensionMacro {
@@ -23,7 +23,15 @@ extension DependencyKeyConformedMacro: ExtensionMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        []
+        let conformedType = "I\(type.trimmed)"
+        let syntax = try ExtensionDeclSyntax(
+        """
+        extension \(type.trimmed): \(raw: Self.conformed) {
+            public static var liveValue: \(raw: conformedType) = \(raw: type.trimmed)()
+        }
+        """
+        )
+        return [syntax]
     }
     
 }
